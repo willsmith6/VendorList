@@ -36,19 +36,23 @@ outfile = open('marketinglistFINAL.csv','w')
 
 # create an empty dictionary
 
-dictionary = dict()
-dictionary = {
-    "Name": 'name',"Email": 'email@email.com','Phone': '000-000-000'
-        }
+dictionary = {}
+
 
 # iterate through the csv object
 
+next(csvfile)
 for record in csvfile:
 
 
     # add the key-value pair to the dictionary
+    dictionary['email'] = record[4]
+    dictionary['phone'] = record[5]
+    
+    dictionary = {(record[1] +' '+ record[2]):{
+        dictionary['email'],
+        dictionary['phone']}}
 
-    print(record, csvfile[record])
 
 # print the dictionary after the loop is finished
 
@@ -56,7 +60,12 @@ print(dictionary)
 
 # iternate through the dictionary and write to the output file
 
+for key in dictionary:
 
+    outfile.write(key)
+    outfile.write(': ')
+    outfile.write(str(dictionary[key]))
+    outfile.write('\n')
 
 # close your output file
 
